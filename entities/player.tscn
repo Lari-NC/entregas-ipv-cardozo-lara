@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cc73rc6leudud"]
+
+[ext_resource type="Texture2D" uid="uid://ddm2jnocjnnwl" path="res://resources/player.png" id="1_merdl"]
+[ext_resource type="Script" uid="uid://b1g35pqcuwtil" path="res://entities/player.gd" id="2_b0kkn"]
+
+[node name="Player" type="Sprite2D" unique_id=1470974327]
+texture = ExtResource("1_merdl")
+script = ExtResource("2_b0kkn")
