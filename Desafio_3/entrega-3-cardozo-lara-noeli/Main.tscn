@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bot0ogpjsvui2"]
+
+[ext_resource type="PackedScene" uid="uid://2g77cgkbkatc" path="res://entities/player/Player.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://cwss7yl8udbui" path="res://assets/textures/background.png" id="2"]
+[ext_resource type="Script" uid="uid://bkmvt4ya2xfm8" path="res://Main.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://bscjwoaotlcqc" path="res://entities/enemies/Turret.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://1igy8bxshhsv" path="res://world/Floor.tscn" id="4_3dxm6"]
+[ext_resource type="Script" uid="uid://ertnqm8kd3lw" path="res://entities/enemies/TurretsSpawner.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://j14wrxanwhni" path="res://assets/textures/player.png" id="7_lgr22"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trn2v"]
+size = Vector2(64, 64)
+
+[node name="Main" type="Node" unique_id=993030347]
+script = ExtResource("3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=672368693]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="CanvasLayer" unique_id=1344033962]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2")
+expand_mode = 1
+
+[node name="Player" parent="." unique_id=934230383 instance=ExtResource("1")]
+position = Vector2(413.003, 395.272)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=595637212]
+drag_horizontal_offset = -0.17
+drag_vertical_offset = -1.0
+drag_bottom_margin = 0.22
+
+[node name="Floor" parent="." unique_id=1323006760 instance=ExtResource("4_3dxm6")]
+position = Vector2(400, 538.00006)
+
+[node name="Floor2" parent="." unique_id=1850611506 instance=ExtResource("4_3dxm6")]
+position = Vector2(1198, 538)
+
+[node name="Floor3" parent="." unique_id=626724351 instance=ExtResource("4_3dxm6")]
+position = Vector2(1997.9998, 538)
+
+[node name="TurretsSpawner" type="Node" parent="." unique_id=1321132279]
+script = ExtResource("5")
+turret_scene = ExtResource("4")
+
+[node name="Cube" type="RigidBody2D" parent="." unique_id=1733094941]
+
+[node name="Sprite2D" type="Sprite2D" parent="Cube" unique_id=219129380]
+position = Vector2(271, 70)
+texture = ExtResource("7_lgr22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cube" unique_id=1537945302]
+position = Vector2(271, 70)
+shape = SubResource("RectangleShape2D_trn2v")
+
+[node name="Cube2" type="RigidBody2D" parent="." unique_id=400684706]
+position = Vector2(0, 74)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cube2" unique_id=208443626]
+position = Vector2(271, 70)
+texture = ExtResource("7_lgr22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cube2" unique_id=915141875]
+position = Vector2(271, 70)
+shape = SubResource("RectangleShape2D_trn2v")
