@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://bg6s38wn8ss5x"]
+
+[ext_resource type="Script" uid="uid://tp4fxm4jsgcy" path="res://src/entities/player/Player.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://de1m14eyfnc8c" path="res://assets/textures/player/player_sheet.png" id="2_lvau8"]
+[ext_resource type="Texture2D" uid="uid://7v68qc6wpxn0" path="res://assets/textures/player/staff.png" id="3_lvau8"]
+[ext_resource type="Script" uid="uid://bxm1bqpwq3bk5" path="res://src/entities/player/Cannon.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://dnl107pupmqic" path="res://src/entities/player/PlayerProjectile.tscn" id="5"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(10.5, 16)
+
+[sub_resource type="Animation" id="Animation_lvau8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodyPivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gc66i"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodyPivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_j0f6w"]
+resource_name = "jump"
+length = 0.3
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodyPivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [18, 18, 19, 20]
+}
+
+[sub_resource type="Animation" id="Animation_3g2ip"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodyPivot/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 9, 10, 11, 12, 13, 14, 15, 16]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j0f6w"]
+_data = {
+&"RESET": SubResource("Animation_lvau8"),
+&"idle": SubResource("Animation_gc66i"),
+&"jump": SubResource("Animation_j0f6w"),
+&"walk": SubResource("Animation_3g2ip")
+}
+
+[node name="Player" type="CharacterBody2D" unique_id=1969069774]
+collision_layer = 2
+collision_mask = 4
+floor_max_angle = 0.802851
+floor_snap_length = 16.0
+platform_floor_layers = 4294901761
+script = ExtResource("1")
+ACCELERATION = 500.0
+H_SPEED_LIMIT = 500.0
+jump_speed = 400
+FRICTION_WEIGHT = 5.0
+gravity = 500
+push_force = 160.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=397762486]
+position = Vector2(1.25, -8)
+shape = SubResource("1")
+
+[node name="BodyAnimations" type="AnimationPlayer" parent="." unique_id=680112567]
+libraries/ = SubResource("AnimationLibrary_j0f6w")
+
+[node name="BodyPivot" type="Node2D" parent="." unique_id=1453396128]
+position = Vector2(-0.0635071, 0.165405)
+
+[node name="Body" type="Sprite2D" parent="BodyPivot" unique_id=986104052]
+position = Vector2(0.0635071, -9.165405)
+texture = ExtResource("2_lvau8")
+hframes = 9
+vframes = 5
+
+[node name="WeaponContainer" type="Node2D" parent="." unique_id=1674227803]
+
+[node name="Weapon" type="Node2D" parent="WeaponContainer" unique_id=969932854]
+unique_name_in_owner = true
+position = Vector2(-1, -6)
+script = ExtResource("4")
+projectile_scene = ExtResource("5")
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponContainer/Weapon" unique_id=145210563]
+rotation = 1.5707964
+texture = ExtResource("3_lvau8")
+
+[node name="WeaponTip" type="Marker2D" parent="WeaponContainer/Weapon" unique_id=1940239575]
+position = Vector2(15, 0)
