@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://cykt5hn0mcf8g"]
+
+[ext_resource type="Script" uid="uid://sgw7fecfvlwo" path="res://src/game/ui/options/ActionInput.gd" id="1_nk7um"]
+[ext_resource type="FontFile" path="res://assets/fonts/Default-Medium.tres" id="2_c5oag"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nk7um"]
+bg_color = Color(0.43137255, 0.43137255, 0.43137255, 0.4862745)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lwm8"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 0.49019608)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="ActionInput" type="PanelContainer"]
+physics_interpolation_mode = 0
+anchors_preset = -1
+offset_right = 128.0
+offset_bottom = 34.0
+scale = Vector2(1.1946169, 1.0488921)
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_nk7um")
+script = ExtResource("1_nk7um")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PanelInput" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.15
+theme_override_styles/panel = SubResource("StyleBoxFlat_6lwm8")
+
+[node name="Input" type="Label" parent="MarginContainer/HBoxContainer/PanelInput"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c5oag")
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelAction" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_6lwm8")
+
+[node name="Action" type="Label" parent="MarginContainer/HBoxContainer/PanelAction"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c5oag")
+text = "Move Left"
+vertical_alignment = 1
