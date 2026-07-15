@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Proyecto Godot - Clase 6"
+config/name="entrega-5-cardozo-lara-noeli"
 run/main_scene="res://src/Main.tscn"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.png"
