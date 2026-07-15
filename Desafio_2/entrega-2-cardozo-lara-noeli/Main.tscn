@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://buxi3fe4almg3"]
+
+[ext_resource type="PackedScene" uid="uid://dajwjxgxo02i2" path="res://entities/player/Player.tscn" id="1"]
+[ext_resource type="Script" uid="uid://df6ptbp34dkqq" path="res://Main.gd" id="1_cm0pq"]
+[ext_resource type="Texture2D" uid="uid://bnchqqn0xduh3" path="res://assets/textures/background.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://ccjh23opjwx24" path="res://assets/textures/floor.png" id="3"]
+
+[node name="Main" type="Node" unique_id=1032954341]
+script = ExtResource("1_cm0pq")
+
+[node name="Background" type="TextureRect" parent="." unique_id=2071779402]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2")
+expand_mode = 1
+
+[node name="Floor" type="TextureRect" parent="." unique_id=1488796643]
+anchors_preset = -1
+anchor_top = 0.699
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.04800415
+offset_bottom = 0.047973633
+texture = ExtResource("3")
+expand_mode = 1
+
+[node name="Player" parent="." unique_id=1582542787 instance=ExtResource("1")]
+position = Vector2(377, 429)
